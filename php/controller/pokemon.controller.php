@@ -15,6 +15,7 @@ class PokemonController
         $this->view = new PokemonView();
         $this->pokemons = $this->getPokemons();
         $this->showPokemons();
+        echo "<h1>Estamos acá</h1>";
     }
     public function getPokemons($params = null)
     {
@@ -34,6 +35,6 @@ class PokemonController
 
     public function showPokemons()
     {
-        $this->view->showPokemons($this->pokemons);
+        $this->view->renderHome($this->pokemons);
     }
 }
