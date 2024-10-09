@@ -13,7 +13,7 @@ class Connection
         $password = ''; // '123456'
         try {
             $pdo = new PDO('mysql:' . $host . $dbname, $user, $password);
-            echo 'Successful connection.';
+            // echo 'Successful connection.';
             $this->db = $pdo;
         } catch (PDOException $exc) {
             echo 'Connection error: ' . $exc->getMessage();

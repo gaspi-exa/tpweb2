@@ -1,19 +1,20 @@
 <?php
 
+require_once 'libs/Smarty.class.php';
+
 class PokemonView
-{
-    public function __construct () {
-        $this->smarty=new Smarty();
+{        
+    private $smarty;
 
-
+    public function __construct()
+    {
+        $this->smarty = new Smarty();
     }
-    public function renderHome ($pokemons)
-    {   
 
+    public function renderHome($pokemons, $categories)
+    {
         $this->smarty->assign("pokemons", $pokemons);
-        
-        $this->smarty->display("templates/index.tpl");
-
-
+        $this->smarty->assign("categories", $categories);
+        $this->smarty->display("templates/public/index.tpl");
     }
 }
