@@ -9,31 +9,26 @@
 
 <body>
   <main>
+
     <section class="table-section">
-      <table>
-        <thead>
-          <tr>
-            {foreach $categories as $c}
-              <th>
-                {$c->name}
-              </th>
-            {/foreach}
-          </tr>
-        </thead>
-        <tbody id="table-pokemon">
-          <tr>
+      {foreach $categories as $c}
+        <div style="display: flex; border: 1px solid">
+          <h3>{$c->name}</h3>
+          <div style="display: flex;">
             {foreach $pokemons as $p}
-              <td>
-                <img src="https://img.pokemondb.net/sprites/silver/normal/{$p->name}.png" />
-                </br>
-                <p>
-                  {$p->name}
-                </p>
-              </td>
+              {if $p->category == $c->_id}
+                <div style="width: 100px">
+                  <img src="https://img.pokemondb.net/sprites/silver/normal/{$p->name}.png" />
+                  </br>
+                  <p>
+                    {$p->name}
+                  </p>
+                </div>
+              {/if}
             {/foreach}
-          </tr>
-        </tbody>
-      </table>
+          </div>
+        </div>
+      {/foreach}
     </section>
   </main>
 </body>
