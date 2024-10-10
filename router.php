@@ -10,6 +10,7 @@ $r = new Router();
 
 $r->addRoute('*', 'GET', 'PokemonController', 'getPokemons');
 
+/* AUTH */
 $r->addRoute('login', 'GET', 'AuthController', 'showLogin');
 $r->addRoute('signup', 'GET', 'AuthController', 'showSignup');
 $r->addRoute('logout', 'GET', 'AuthController', 'showLogout');

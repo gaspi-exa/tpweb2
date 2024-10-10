@@ -14,6 +14,7 @@ class AuthView
     public function renderAuth($root)
     {
         $this->smarty->assign('root', $root);
+        $this->smarty->assign('styleFileName', 'auth');
         $this->smarty->display('templates/auth.tpl');
     }
 }
