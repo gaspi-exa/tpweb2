@@ -16,15 +16,11 @@ class PokemonController
         $this->model = new PokemonModel();
         $this->view = new PokemonView();
         $this->pokemons = $this->getPokemons();
-        $this->showPokemons();
+        // $this->showPokemons();
     }
-    public function getPokemons($params = null)
+    public function getPokemons()
     {
-        // if ($params == null) {
-            $this->setPokemons($this->model->getPokemons(null));
-        // } else {
-        //     $this->setPokemons($this->model->getPokemon($params[':ID']));
-        // }
+        $this->setPokemons($this->model->getPokemons(null));
         return $this->pokemons;
     }
 
@@ -39,5 +35,12 @@ class PokemonController
         $c = new CategoryController();
         $this->categories = $c->getCategories();
         $this->view->renderHome($this->pokemons, $this->categories);
+    }
+
+    public function showPokemonsSession($userName = null)
+    {
+        $c = new CategoryController();
+        $this->categories = $c->getCategories();
+        $this->view->renderHomeSession($this->pokemons, $this->categories, $userName);
     }
 }

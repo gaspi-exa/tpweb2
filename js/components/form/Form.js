@@ -121,13 +121,14 @@ class Form {
     event.preventDefault();
     if (this.isValidForm()) {
       this.$form.submit();
+      this.$form.reset();
       // window.open(EModules.ADMIN, "_self");
     }
   };
 
   onLogOut = (event) => {
     event.preventDefault();
-    window.open(EModules.ADMIN, "_self");
+    window.open(EModules.HOME, "_self");
   };
 
   isValidForm = () => {

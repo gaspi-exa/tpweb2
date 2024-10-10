@@ -15,11 +15,11 @@ class AuthModule {
     switch (this.$userStatus) {
       case EUserStatus.UNREGISTERED:
         form = new Form(this.$userStatus, false);
-        form.setAction("login");
+        form.setAction("home"); // public
         break;
       case EUserStatus.LOGGED_OUT:
         form = new Form(this.$userStatus, true);
-        form.setAction("home");
+        form.setAction("home"); // session
         break;
       case EUserStatus.LOGGED_IN:
         form = new Form(this.$userStatus, false);

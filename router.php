@@ -8,13 +8,17 @@ define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'
 
 $r = new Router();
 
-$r->addRoute('*', 'GET', 'PokemonController', 'getPokemons');
+$r->addRoute('*', 'GET', 'PokemonController', 'showPokemons');
 
 /* AUTH */
+$r->addRoute('login', 'POST', 'AuthController', 'createUser');
 $r->addRoute('login', 'GET', 'AuthController', 'showLogin');
+$r->addRoute('home', 'POST', 'AuthController', 'verifyUser');
+
 $r->addRoute('signup', 'GET', 'AuthController', 'showSignup');
 $r->addRoute('logout', 'GET', 'AuthController', 'showLogout');
+$r->addRoute('logout', 'POST', 'AuthController', 'logout');
 
-$r->setDefaultRoute('PokemonController', 'getPokemons');
+$r->setDefaultRoute('PokemonController', 'showPokemons');
 
 $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
