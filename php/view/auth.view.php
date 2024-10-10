@@ -2,8 +2,8 @@
 
 require_once 'libs/Smarty.class.php';
 
-class LoginView
-{        
+class AuthView
+{
     private $smarty;
 
     public function __construct()
@@ -11,8 +11,9 @@ class LoginView
         $this->smarty = new Smarty();
     }
 
-    public function renderHome($pokemons, $categories)
+    public function renderAuth($root)
     {
-        $this->$smarty->display('login.tpl');
+        $this->smarty->assign('root', $root);
+        $this->smarty->display('templates/auth.tpl');
     }
 }
