@@ -34,7 +34,7 @@ button {
 /* FORM */
 
 input.error {
-  border: 1px solid red;
+  border: 2px solid red;
 }
 
 .secondary {
@@ -51,4 +51,11 @@ input.error {
   margin-top: 2em;
 }
 
-/* HOME */
+.errors {
+  position: absolute;
+  top: 0;
+  background: #f3000085;
+  width: 100%;
+  text-align: center;
+  padding: 2em 0;
+}

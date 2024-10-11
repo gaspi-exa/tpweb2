@@ -26,7 +26,18 @@ class Form {
     this.$isRegistered = isRegistered;
     this.$inputsQuantity = this.$isRegistered ? 2 : 4;
     this.createForm();
+    this.checkErrors();
   }
+
+  checkErrors = () => {
+    const errors = document.getElementById("errors").value;
+    if (errors !== "") {
+      const errorContainer = document.createElement("div");
+      errorContainer.classList.add("errors");
+      errorContainer.innerHTML = errors;
+      this.$form.appendChild(errorContainer);
+    }
+  };
 
   createForm = () => {
     useStyles(this.$form, form);
@@ -60,8 +71,9 @@ class Form {
             input.setType("password");
             input.setName("password");
             break;
-          case 3:
-            input.setPlaceholder("REPEAT PASSWORD");
+            case 3:
+              input.setPlaceholder("REPEAT PASSWORD");
+              input.setName("repeatPassword");
             input.setType("password");
             break;
         }
@@ -112,7 +124,7 @@ class Form {
 
   onSignUp = (event) => {
     event.preventDefault();
-    if (this.isValidForm()) {
+    if (this.isValidForm(true)) {
       this.$form.submit();
     }
   };
@@ -131,17 +143,33 @@ class Form {
     window.open(EModules.HOME, "_self");
   };
 
-  isValidForm = () => {
-    let isValid = true;
-
+  isValidForm = (fromSignUp) => {
+    let validPasswords = true;
+    if (fromSignUp) {
+      const passwords = this.$inputs.filter((input) => {
+        return input.getType() === "password";
+      });
+      validPasswords = passwords[0].getInput().value === passwords[1].getInput().value;
+      
+      if (validPasswords) {
+        this.$inputs.forEach((input) => {
+          if (input.getName() === 'repeatPassword') {
+            input.setErrors(["Passwords don't match"]);
+            validInputs = false;
+          }
+        });
+      }
+    }
+    
+    let validInputs = true;
     this.$inputs.forEach((input) => {
       if (!input.isValid() || !input.getInput().value.trim()) {
         input.setErrors(["Este campo es obligatorio"]);
-        isValid = false;
+        validInputs = false;
       }
     });
 
-    return isValid;
+    return validInputs && validPasswords;
   };
 
   setAction = (action) => {

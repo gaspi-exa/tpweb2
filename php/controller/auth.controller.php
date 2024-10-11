@@ -34,6 +34,11 @@ class AuthController
         return $this->view->renderAuth('logout');
     }
 
+    public function showError($errors, $fromSignUp = false)
+    {
+        return $this->view->renderAuth($fromSignUp ? 'signup' : 'login', $errors);
+    }
+
     public function createUser()
     {
         $name = $_POST['name'];
@@ -45,7 +50,7 @@ class AuthController
             $encriptedPass = password_hash($password, PASSWORD_DEFAULT);
 
             if (!$this->getExistingUser($name, $email)) {
-                echo 'User already exist';
+                $this->showError('User already exist', true);
                 return;
             }
 
@@ -87,16 +92,13 @@ class AuthController
                     //$_SESSION['LAST_ACTIVITY'] = time();
                     $this->showHome($user_db->name);
                 } else {
-                    echo "111";
-                    // $this->showLogIn('', 'Invalid password');
+                    $this->showError('Invalid password');
                 }
             } else {
-                echo "222";
-                // $this->showLogIn('User do not exist', '');
+                $this->showError("User don't exist");
             }
         } else {
-            echo "333";
-            // $this->showLogIn('Input is empty!', '');
+            $this->showError('Input is empty!');
         }
     }
 

@@ -13,7 +13,6 @@ class Main {
 
   onInit = () => {
     this.checkRoots();
-    console.log(this.$root)
     switch (this.$root.id) {
       case Route.SIGNUP:
         new AuthModule(this.$root, EUserStatus.UNREGISTERED).onInit();

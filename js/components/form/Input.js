@@ -19,11 +19,15 @@ class Input {
     this.$input.name = this.$name;
   };
 
+  getType = () => {
+    return this.$type;
+  };
+
   setType = (type) => {
     this.$type = type;
     this.setAttributes();
   };
-  
+
   setName = (name) => {
     this.$name = name;
     this.setAttributes();
