@@ -145,13 +145,15 @@ class Form {
 
   isValidForm = (fromSignUp) => {
     let validPasswords = true;
+    let validInputs = true;
+
     if (fromSignUp) {
       const passwords = this.$inputs.filter((input) => {
         return input.getType() === "password";
       });
       validPasswords = passwords[0].getInput().value === passwords[1].getInput().value;
       
-      if (validPasswords) {
+      if (!validPasswords) {
         this.$inputs.forEach((input) => {
           if (input.getName() === 'repeatPassword') {
             input.setErrors(["Passwords don't match"]);
@@ -161,7 +163,6 @@ class Form {
       }
     }
     
-    let validInputs = true;
     this.$inputs.forEach((input) => {
       if (!input.isValid() || !input.getInput().value.trim()) {
         input.setErrors(["Este campo es obligatorio"]);

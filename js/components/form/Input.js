@@ -33,6 +33,10 @@ class Input {
     this.setAttributes();
   };
 
+  getName = () => {
+    return this.$name;
+  };
+
   setPlaceholder = (placeholder) => {
     this.$placeholder = placeholder;
     this.setAttributes();
