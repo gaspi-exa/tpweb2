@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  background-color: #000;
+}
+
+main {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.arena-section {
+  height: 100%;
+  width: 100%;
+  background: rgb(22, 0, 41);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.poke-container {
+    border: 1px solid red;
+}
