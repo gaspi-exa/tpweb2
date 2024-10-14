@@ -6,7 +6,8 @@ require_once 'php/controller/category.controller.php';
 
 class ArenaController
 {
-    private $pokemons;
+    private $userName;
+    private $pokemonsByUser;
     private $pokemonController;
     private $view;
 
@@ -19,16 +20,16 @@ class ArenaController
 
     public function index()
     {
-        $this->view->render($this->pokemons);
+        $this->view->render($this->pokemonsByUser);
     }
 
     public function getPokemons()
     {
-        return $this->pokemons;
+        return $this->pokemonsByUser;
     }
 
-    public function setPokemons($pokemons)
+    public function setPokemons($pokemonsByUser)
     {
-        $this->pokemons = $pokemons;
+        $this->pokemonsByUser = $pokemonsByUser;
     }
 }
