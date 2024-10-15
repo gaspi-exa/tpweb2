@@ -1,21 +1,20 @@
 <?php
 require_once 'php/model/user.model.php';
 require_once 'php/view/auth.view.php';
-require_once 'php/controller/pokemon.controller.php';
+require_once 'php/controller/arena.controller.php';
 
 class AuthController
 {
     private $userModel;
     private $view;
-    private $pokemonController;
+    private $arenaController;
     private $allUsers;
-    private $userName;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->view = new AuthView();
-        $this->pokemonController = new PokemonController();
+        $this->arenaController = new ArenaController();
         $this->allUsers = $this->userModel->getAllUsers();
     }
 
@@ -39,6 +38,7 @@ class AuthController
         return $this->view->renderAuth($fromSignUp ? 'signup' : 'login', $errors);
     }
 
+
     public function createUser()
     {
         $name = $_POST['name'];
@@ -55,11 +55,7 @@ class AuthController
             }
 
             $this->userModel->createUser($name, $email, $encriptedPass, $clearence);
-            $this->userName = $name;
-            session_start();
-            $_SESSION['NAME'] = $name;
             $this->showLogin($name);
-            echo 'User created';
             return;
         }
         echo 'Input is empty!';
@@ -78,19 +74,19 @@ class AuthController
 
     public function verifyUser()
     {
-        $this->userName = $_POST['name'];
+        $userName = $_POST['name'];
         $password = $_POST['password'];
         if (
-            isset($this->userName) && !empty($this->userName) &&
+            isset($userName) && !empty($userName) &&
             isset($password) && !empty($password)
         ) {
-            $user_db = $this->userModel->getUser($this->userName);
+            $user_db = $this->userModel->getUser($userName);
             if (isset($user_db) && $user_db) {
                 if (password_verify($password, $user_db->password)) {
-                    session_start();
                     $_SESSION['NAME'] = $user_db->name;
+                    session_start();
                     //$_SESSION['LAST_ACTIVITY'] = time();
-                    $this->showHome($user_db->name);
+                    $this->showArena($user_db->name);
                 } else {
                     $this->showError('Invalid password');
                 }
@@ -102,14 +98,9 @@ class AuthController
         }
     }
 
-    public function getUserName()
+    public function showArena($userName)
     {
-        return $this->userName;
-    }
-
-    public function showHome($name)
-    {
-        $this->pokemonController->showPokemonsSession($name);
+        $this->arenaController->index($userName);
     }
 
     public function logout()

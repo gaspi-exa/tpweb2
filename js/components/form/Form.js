@@ -188,6 +188,7 @@ class Form {
   };
 
   setBackground = () => {
+    return;
     this.$service.getPokemons().then((next) => {
       this.$pokemonSelected = next.find((pok) => pok.name === EPokemon.MEWTWO);
       this.$form.style.backgroundImage = `url(${this.$pokemonSelected?.url})`;

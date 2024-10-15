@@ -14,6 +14,9 @@ class HomeModule {
   }
 
   onInit = () => {
+    const arena = new Arena(this.$pokemonsList);
+    this.$root.appendChild(arena.getArena());
+    return;
     this.$service.getPokemons().then((next) => {
       this.setPokemonsList(next);
       if (this.$pokemonsList?.length > 0) {
@@ -22,8 +25,7 @@ class HomeModule {
           (pok) => pok.name === EPokemon.GENGAR
         );
         backdrop.setImage(pokemon?.url);
-        
-        
+
         const arena = new Arena(this.$pokemonsList);
         // this.$root.appendChild(arena.getArena());
         this.$root.appendChild(arena.getArena());

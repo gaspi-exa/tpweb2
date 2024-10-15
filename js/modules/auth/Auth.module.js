@@ -19,7 +19,7 @@ class AuthModule {
         break;
       case EUserStatus.LOGGED_OUT:
         form = new Form(this.$userStatus, true);
-        form.setAction("home"); // session
+        form.setAction("arena"); // session
         break;
       case EUserStatus.LOGGED_IN:
         form = new Form(this.$userStatus, false);

@@ -16,8 +16,9 @@ class PokemonController
         $this->model = new PokemonModel();
         $this->view = new PokemonView();
         $this->pokemons = $this->getPokemons();
-        $this->showPokemons();
+        // $this->showPokemons();
     }
+
     public function getPokemons()
     {
         $this->setPokemons($this->model->getPokemons(null));
@@ -28,7 +29,6 @@ class PokemonController
     {
         $this->pokemons = $pokemons;
     }
-
 
     public function showPokemons()
     {

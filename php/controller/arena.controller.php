@@ -1,12 +1,10 @@
 <?php
 
-require_once 'php/model/pokemon.model.php';
-require_once 'php/view/pokemon.view.php';
-require_once 'php/controller/category.controller.php';
+require_once 'php/view/arena.view.php';
+require_once 'php/controller/pokemon.controller.php';
 
 class ArenaController
 {
-    private $userName;
     private $pokemonsByUser;
     private $pokemonController;
     private $view;
@@ -18,9 +16,9 @@ class ArenaController
         $this->setPokemons($this->pokemonController->getPokemons());
     }
 
-    public function index()
+    public function index($userName)
     {
-        $this->view->render($this->pokemonsByUser);
+        $this->view->render($this->pokemonsByUser, $userName);
     }
 
     public function getPokemons()
