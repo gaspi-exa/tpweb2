@@ -13,25 +13,33 @@ class Main {
 
   onInit = () => {
     this.checkRoots();
-    switch (this.$root.id) {
-      case Route.SIGNUP:
-        new AuthModule(this.$root, EUserStatus.UNREGISTERED).onInit();
-        break;
-      case Route.LOGIN:
-        new AuthModule(this.$root, EUserStatus.LOGGED_OUT).onInit();
-        break;
-      case Route.LOGOUT:
-        new AuthModule(this.$root, EUserStatus.LOGGED_IN).onInit();
-        break;
-      case Route.HOME:
-        new HomeModule(this.$root).onInit();
-        break;
-      // case Route.PRIVATE:
-      //   new HomeModule(this.$root).onInit();
-      //   break;
-      // case Route.ADMIN:
-      //   new AdminModule(this.$root).onInit();
-      //   break;
+    if (this.$root) {
+      switch (this.$root.id) {
+        case Route.SIGNUP:
+          new AuthModule(this.$root, EUserStatus.UNREGISTERED).onInit();
+          break;
+        case Route.LOGIN:
+          new AuthModule(this.$root, EUserStatus.LOGGED_OUT).onInit();
+          break;
+        case Route.LOGOUT:
+          new AuthModule(this.$root, EUserStatus.LOGGED_IN).onInit();
+          break;
+        case Route.HOME:
+          new HomeModule(this.$root).onInit();
+          break;
+        // case Route.PRIVATE:
+        //   new HomeModule(this.$root).onInit();
+        //   break;
+        // case Route.ADMIN:
+        //   new AdminModule(this.$root).onInit();
+        //   break;
+      }
+    }
+    const btnPower = document.getElementById("btn-power");
+    if (btnPower) {
+      btnPower.onclick = () => {
+        window.open(Route.LOGOUT, "_self");
+      };
     }
   };
 
