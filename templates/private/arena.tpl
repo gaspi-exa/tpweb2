@@ -39,6 +39,7 @@
             <div class="poke-item">
               <img src="https://play.pokemonshowdown.com/sprites/xyani/{$poke->name}.gif" alt="" />
             </div>
+            <h1>{$poke->name}</h1>
           </div>
         {/foreach}
       </div>

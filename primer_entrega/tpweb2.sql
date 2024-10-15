@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2024 a las 23:42:14
+-- Tiempo de generación: 15-10-2024 a las 02:24:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -226,6 +226,61 @@ INSERT INTO `pokemon` (`_id`, `name`, `url`, `category`) VALUES
 (150, 'mewtwo', 'https://wallpapers-clan.com/wp-content/uploads/2024/04/aesthetic-pokemon-mewtwo-desktop-wallpaper-preview.jpg', 13),
 (151, 'mew', NULL, 13);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `clearance` varchar(50) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`_id`, `name`, `clearance`, `password`, `email`) VALUES
+(1, 'Ash Ketchum', '5', '', ''),
+(2, 'Misty', '4', '', ''),
+(3, 'Brock', '3', '', ''),
+(4, 'Ash Ketchum', '5', '', ''),
+(5, 'Misty', '4', '', ''),
+(6, 'Brock', '3', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_pokemon`
+--
+
+CREATE TABLE `user_pokemon` (
+  `user_id` int(11) NOT NULL,
+  `pokemon_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `user_pokemon`
+--
+
+INSERT INTO `user_pokemon` (`user_id`, `pokemon_id`) VALUES
+(1, 7),
+(1, 25),
+(2, 54),
+(2, 79),
+(3, 74),
+(3, 95);
+(7, 12),
+(7, 24),
+(7, 33),
+(7, 45),
+(7, 58),
+(7, 63);
+
 --
 -- Índices para tablas volcadas
 --
@@ -244,6 +299,29 @@ ALTER TABLE `pokemon`
   ADD KEY `fk_category` (`category`);
 
 --
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`_id`);
+
+--
+-- Indices de la tabla `user_pokemon`
+--
+ALTER TABLE `user_pokemon`
+  ADD PRIMARY KEY (`user_id`,`pokemon_id`),
+  ADD KEY `pokemon_id` (`pokemon_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `user`
+--
+ALTER TABLE `user`
+  MODIFY `_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -252,6 +330,13 @@ ALTER TABLE `pokemon`
 --
 ALTER TABLE `pokemon`
   ADD CONSTRAINT `fk_category` FOREIGN KEY (`category`) REFERENCES `category` (`_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `user_pokemon`
+--
+ALTER TABLE `user_pokemon`
+  ADD CONSTRAINT `user_pokemon_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_pokemon_ibfk_2` FOREIGN KEY (`pokemon_id`) REFERENCES `pokemon` (`_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

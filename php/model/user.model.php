@@ -14,10 +14,10 @@
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function createUser($name, $email, $password, $clearence)
+    public function createUser($name, $email, $password, $clearance)
     {
-        $query = $this->db->prepare('INSERT INTO user(name, email, password, clearence) VALUES(?, ?, ?, ?)');
-        $query->execute(array($name, $email, $password, $clearence));
+        $query = $this->db->prepare('INSERT INTO user(name, email, password, clearance) VALUES(?, ?, ?, ?)');
+        $query->execute(array($name, $email, $password, $clearance));
     }
 
     public function getUser($userName)

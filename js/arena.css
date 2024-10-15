@@ -46,6 +46,7 @@ section.arena-section {
   width: 100%;
 }
 
+
 /* ASIDE */
 
 aside {
@@ -152,6 +153,10 @@ aside.list {
 
 .list-item:hover {
   background: rgb(36, 36, 36);
+}
+.list-item h1 {
+  color:red;
+ 
 }
 
 .poke-item {
