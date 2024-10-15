@@ -78,13 +78,13 @@ class AuthController
 
     public function verifyUser()
     {
-        $name = $_POST['name'];
+        $this->userName = $_POST['name'];
         $password = $_POST['password'];
         if (
-            isset($name) && !empty($name) &&
+            isset($this->userName) && !empty($this->userName) &&
             isset($password) && !empty($password)
         ) {
-            $user_db = $this->userModel->getUser($name);
+            $user_db = $this->userModel->getUser($this->userName);
             if (isset($user_db) && $user_db) {
                 if (password_verify($password, $user_db->password)) {
                     session_start();
@@ -100,6 +100,11 @@ class AuthController
         } else {
             $this->showError('Input is empty!');
         }
+    }
+
+    public function getUserName()
+    {
+        return $this->userName;
     }
 
     public function showHome($name)

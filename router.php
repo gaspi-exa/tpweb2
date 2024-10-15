@@ -14,10 +14,13 @@ $r->addRoute('*', 'GET', 'PokemonController', 'showPokemons');
 $r->addRoute('login', 'POST', 'AuthController', 'createUser');
 $r->addRoute('login', 'GET', 'AuthController', 'showLogin');
 $r->addRoute('home', 'POST', 'AuthController', 'verifyUser');
-
 $r->addRoute('signup', 'GET', 'AuthController', 'showSignup');
 $r->addRoute('logout', 'GET', 'AuthController', 'showLogout');
 $r->addRoute('logout', 'POST', 'AuthController', 'logout');
+
+/* ARENA */
+
+$r->addRoute('arena', 'GET', 'ArenaController', 'index');
 
 $r->setDefaultRoute('PokemonController', 'showPokemons');
 
