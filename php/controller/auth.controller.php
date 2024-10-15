@@ -86,7 +86,7 @@ class AuthController
                     $_SESSION['NAME'] = $user_db->name;
                     session_start();
                     //$_SESSION['LAST_ACTIVITY'] = time();
-                    $this->showArena($user_db->name);
+                    $this->showArena($user_db);
                 } else {
                     $this->showError('Invalid password');
                 }
@@ -98,9 +98,9 @@ class AuthController
         }
     }
 
-    public function showArena($userName)
+    public function showArena($user)
     {
-        $this->arenaController->index($userName);
+        $this->arenaController->index($user->name, $user->_id);
     }
 
     public function logout()

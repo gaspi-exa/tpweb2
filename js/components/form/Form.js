@@ -71,9 +71,9 @@ class Form {
             input.setType("password");
             input.setName("password");
             break;
-            case 3:
-              input.setPlaceholder("REPEAT PASSWORD");
-              input.setName("repeatPassword");
+          case 3:
+            input.setPlaceholder("REPEAT PASSWORD");
+            input.setName("repeatPassword");
             input.setType("password");
             break;
         }
@@ -151,18 +151,19 @@ class Form {
       const passwords = this.$inputs.filter((input) => {
         return input.getType() === "password";
       });
-      validPasswords = passwords[0].getInput().value === passwords[1].getInput().value;
-      
+      validPasswords =
+        passwords[0].getInput().value === passwords[1].getInput().value;
+
       if (!validPasswords) {
         this.$inputs.forEach((input) => {
-          if (input.getName() === 'repeatPassword') {
+          if (input.getName() === "repeatPassword") {
             input.setErrors(["Passwords don't match"]);
             validInputs = false;
           }
         });
       }
     }
-    
+
     this.$inputs.forEach((input) => {
       if (!input.isValid() || !input.getInput().value.trim()) {
         input.setErrors(["Este campo es obligatorio"]);
@@ -188,6 +189,8 @@ class Form {
   };
 
   setBackground = () => {
+    this.$form.style.backgroundImage = `url(js/assets/img/wallpapers/arena2.jpg)`;
+    this.$form.style.backgroundSize = "cover";
     return;
     this.$service.getPokemons().then((next) => {
       this.$pokemonSelected = next.find((pok) => pok.name === EPokemon.MEWTWO);

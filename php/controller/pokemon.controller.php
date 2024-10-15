@@ -37,10 +37,8 @@ class PokemonController
         $this->view->renderHome($this->pokemons, $this->categories);
     }
 
-    public function showPokemonsSession($userName = null)
+    public function showPokemonsSession($userId = null)
     {
-        $c = new CategoryController();
-        $this->categories = $c->getCategories();
-        $this->view->renderHomeSession($this->pokemons, $this->categories, $userName);
+        return $this->model->getPokemonsSession($userId);
     }
 }

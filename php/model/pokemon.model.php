@@ -21,7 +21,17 @@ class PokemonModel
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-    
+
+    public function getPokemonsSession($user_id)
+    {
+        $query = $this->db->prepare('SELECT p.name 
+            FROM pokemon p
+            JOIN user_pokemon up ON p._id = up.pokemon_id
+            WHERE up.user_id = ?;');
+        $query->execute([$user_id]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     // public function getPokemon($_id = null)
     // {
     //     // $query = $this->db->prepare('SELECT pokemon.*, category.name as cat_name FROM pokemon INNER JOIN category ON pokemon.category = category._id WHERE _id=?');
