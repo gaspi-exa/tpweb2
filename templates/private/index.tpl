@@ -16,6 +16,7 @@
             {foreach $pokemons as $p}
               {if $p->category == $c->_id}
                 <div class="poke-container">
+                  <h2>{$p->name}</h2>
                   <a href="#modal{$p->_id}">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$p->_id}.png" />
                   </a>

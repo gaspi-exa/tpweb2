@@ -40,14 +40,7 @@ class Main {
       btnPower.onclick = () => {
         window.open(Route.LOGOUT, "_self");
       };
-      /*PREGUNTAR
-    const btnTable = document.getElementById("btn-table");
-    if (btnPower) {
-      btnPower.onclick = () => {
-        window.open(Route.HOME, "_self");
-      };
     }
-      */
   };
 
   checkRoots = () => {
@@ -62,5 +55,4 @@ class Main {
     ];
     this.$root = roots.find((root) => root !== null);
   };
-}
 }
