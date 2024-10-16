@@ -41,4 +41,5 @@ class PokemonController
     {
         return $this->model->getPokemonsSession($userId);
     }
+    
 }

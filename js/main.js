@@ -4,6 +4,7 @@ import HomeModule from "./modules/home/Home.module.js";
 import AuthModule from "./modules/auth/Auth.module.js";
 import AdminModule from "./modules/admin/Admin.module.js";
 import EUserStatus from "./constants/user-status.js";
+import PokemonService from "./services/pokemon.service.js";
 
 injectGlobalStyles();
 document.addEventListener("DOMContentLoaded", () => new Main().onInit());
@@ -39,6 +40,12 @@ class Main {
     if (btnPower) {
       btnPower.onclick = () => {
         window.open(Route.LOGOUT, "_self");
+      };
+    }
+    const btnPokeball = document.getElementById("Pokeball-container");
+    if (btnPower) {
+      btnPokeball.onclick = () => {
+        PokemonService();
       };
     }
   };

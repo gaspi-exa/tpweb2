@@ -22,15 +22,15 @@
       </div>
     </aside>
 
-    <div class="pokeball-container">
-      <img src="./js/assets/img/poke2.png" />
+    <button class="pokeball-container">
+    <img src="./js/assets/img/poke2.png" alt="Pokeball" />
+  </button>
+  
+  <section class="arena-section">
+    <div class="poke-container">
+      <img src="https://play.pokemonshowdown.com/sprites/xyani/zapdos.gif" alt="Zapdos" />
     </div>
-
-    <section class="arena-section">
-      <div class="poke-container">
-        <img src="https://play.pokemonshowdown.com/sprites/xyani/zapdos.gif" alt="" />
-      </div>
-    </section>
+  </section>
 
     <aside class="list">
       <div class="list-container">

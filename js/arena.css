@@ -153,10 +153,11 @@ aside.list {
 
 .list-item:hover {
   background: rgb(36, 36, 36);
+  color:#be9c00
 }
 .list-item h1 {
-  color:red;
- 
+  margin-left: auto;
+  margin-right: 0;
 }
 
 .poke-item {
@@ -204,12 +205,17 @@ aside.list {
   position: absolute;
   bottom: 0;
   margin-left: -30%;
+  background: transparent; /* Fondo transparente */
+  border: none; /* Elimina el borde */
+  cursor: pointer; /* Hace que el puntero cambie a "mano" */
+  padding: 0;
+  outline: none; /* Elimina el borde azul al hacer clic */
 }
 
 .pokeball-container img {
   width: 100%;
   height: 100%;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .pokeball-container img:hover {
