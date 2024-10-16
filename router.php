@@ -18,6 +18,7 @@ $r->addRoute('signup', 'GET', 'AuthController', 'showSignup');
 $r->addRoute('logout', 'GET', 'AuthController', 'showLogout');
 $r->addRoute('logout', 'POST', 'AuthController', 'logout');
 
+
 /* ARENA */
 
 $r->addRoute('arena', 'GET', 'ArenaController', 'index');
@@ -25,3 +26,6 @@ $r->addRoute('arena', 'GET', 'ArenaController', 'index');
 $r->setDefaultRoute('PokemonController', 'showPokemons');
 
 $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
+/* API  */
+
+$r->addRoute('api', )

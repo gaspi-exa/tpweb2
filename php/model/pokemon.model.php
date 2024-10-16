@@ -31,7 +31,8 @@ class PokemonModel
         $query->execute([$user_id]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
+/*
+    
     // public function getPokemon($_id = null)
     // {
     //     // $query = $this->db->prepare('SELECT pokemon.*, category.name as cat_name FROM pokemon INNER JOIN category ON pokemon.category = category._id WHERE _id=?');

@@ -109,6 +109,7 @@ class AuthController
         session_destroy(); // Borra la cookie que se buscó
         header('Location: ' . BASE_URL);
     }
+    
 
     // public function login()
     // {

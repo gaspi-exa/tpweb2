@@ -1,6 +1,6 @@
 function addPokemon(userId, pokemonId) {
     // Configura la solicitud POST al servidor
-    fetch('/add-pokemon.php', {
+    fetch('http://localhost/_TPWEB/api/user-pokemon', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,3 +22,5 @@ function addPokemon(userId, pokemonId) {
       console.error('Error:', error);
     });
   }
+
+  export default addPokemon;

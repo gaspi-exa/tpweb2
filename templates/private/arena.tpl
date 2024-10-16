@@ -22,9 +22,9 @@
       </div>
     </aside>
 
-    <button class="pokeball-container">
+    <button class="pokeball-container" id="send">
     <img src="./js/assets/img/poke2.png" alt="Pokeball" />
-  </button>
+    </button>
   
   <section class="arena-section">
     <div class="poke-container">
