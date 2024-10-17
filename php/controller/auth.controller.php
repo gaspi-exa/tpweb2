@@ -85,8 +85,8 @@ class AuthController
                 if (password_verify($password, $user_db->password)) {
                     $_SESSION['NAME'] = $user_db->name;
                     $_SESSION['USER_ID'] = $user_db->_id;
-                    session_start();
                     //$_SESSION['LAST_ACTIVITY'] = time();
+                    session_start();
                     $this->showArena($user_db);
                 } else {
                     $this->showError('Invalid password');

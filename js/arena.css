@@ -39,13 +39,15 @@ section.arena-section {
 }
 
 .poke-container {
-  max-width: 30%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 .poke-container img {
   width: 100%;
 }
-
 
 /* ASIDE */
 
@@ -66,7 +68,7 @@ aside.menu-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* margin: 1em; */
+  margin: 1em;
   width: 100%;
 }
 
@@ -153,11 +155,12 @@ aside.list {
 
 .list-item:hover {
   background: rgb(36, 36, 36);
-  color:#be9c00
+  color: #be9c00;
 }
 .list-item h1 {
   margin-left: auto;
   margin-right: 0;
+  font-size: 3dvh;
 }
 
 .poke-item {
@@ -213,8 +216,8 @@ aside.list {
 }
 
 .pokeball-container img {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   opacity: 0.8;
 }
 

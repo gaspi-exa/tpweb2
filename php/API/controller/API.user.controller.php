@@ -16,6 +16,7 @@ class APIUserController extends APIController
         parent::__construct();
         $this->view = new APIView();
         $this->authHelper = new AuthHelper();
+        session_start();
     }
 
     public function getUser()

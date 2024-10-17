@@ -21,6 +21,7 @@ class APIPokemonController extends APIController
         $this->view = new APIView();
         $this->pokemonController = new PokemonController();
         $this->authHelper = new AuthHelper();
+        session_start();
     }
 
     public function getRandomPokemon()
