@@ -12,6 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="js/{$styleFileName}.css">
+  <link rel="stylesheet" href="js/styles/{$styleFileName}.css">
   <script src="js/main.js" type="module"></script>
 </head>

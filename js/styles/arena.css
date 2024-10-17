@@ -25,7 +25,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(./assets/img/wallpapers/arena2.jpg);
+  background-image: url(../assets/img/wallpapers/arena2.jpg);
   background-size: cover;
 }
 
