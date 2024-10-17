@@ -2,12 +2,14 @@
 require_once 'php/model/user.model.php';
 require_once 'php/view/auth.view.php';
 require_once 'php/controller/arena.controller.php';
+require_once 'php/helpers/auth.helper.php';
 
 class AuthController
 {
     private $userModel;
     private $view;
     private $arenaController;
+    private $authHelper;
     private $allUsers;
 
     public function __construct()
@@ -15,6 +17,7 @@ class AuthController
         $this->userModel = new UserModel();
         $this->view = new AuthView();
         $this->arenaController = new ArenaController();
+        $this->authHelper = new AuthHelper();
         $this->allUsers = $this->userModel->getAllUsers();
     }
 
@@ -106,9 +109,7 @@ class AuthController
 
     public function logout()
     {
-        session_start(); // Va a buscar la cookie
-        session_destroy(); // Borra la cookie que se buscó
-        header('Location: ' . BASE_URL);
+        $this->authHelper->logOut();
     }
 
 

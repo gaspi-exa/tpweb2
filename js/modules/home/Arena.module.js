@@ -1,5 +1,6 @@
 import PokemonService from "../../services/pokemon.service.js";
 import UserService from "../../services/user.service.js";
+import Route from "../../constants/route.js";
 
 class ArenaModule {
   $pokemonsList = [];
