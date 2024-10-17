@@ -21,12 +21,14 @@ class APIPokemonController extends APIController
         $this->view = new APIView();
         $this->pokemonController = new PokemonController();
         $this->authHelper = new AuthHelper();
-        session_start();
     }
 
     public function getRandomPokemon()
     {
-        $this->view->response($this->pokemonController->getRandomPokemonID(), 200);
+        session_start();
+        if ($this->authHelper->checkLoggedIn()) {
+            $this->view->response($this->pokemonController->getRandomPokemonID(), 200);
+        }
     }
 
     public function addPokemonByUser()

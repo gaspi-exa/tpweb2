@@ -1,7 +1,7 @@
 import Route from "./constants/route.js";
 import injectGlobalStyles from "./utils/globalStyles.js";
 import HomeModule from "./modules/home/Home.module.js";
-import ArenaModule from "./modules/home/arena.module.js";
+import ArenaModule from "./modules/home/Arena.module.js";
 import AuthModule from "./modules/auth/Auth.module.js";
 import AdminModule from "./modules/admin/Admin.module.js";
 import EUserStatus from "./constants/user-status.js";
@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => new Main().onInit());
 
 class Main {
   $root;
-  $randomPokemon;
-  $user;
 
   constructor() {
     this._pokemonService = new PokemonService();

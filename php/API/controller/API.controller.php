@@ -15,4 +15,3 @@ abstract class APIController
         return json_decode($this->data);
     }
 }
-

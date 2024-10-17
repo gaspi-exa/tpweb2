@@ -6,6 +6,8 @@ class ArenaModule {
   $pokemonsList = [];
   $service;
   $root;
+  $randomPokemon;
+  $user;
 
   constructor(root) {
     this.$root = root;
@@ -25,7 +27,7 @@ class ArenaModule {
       window.open(Route.LOGOUT, "_self");
     };
     btnPokeball.onclick = () => {
-      this._pokemonService.addPokemon(this.$user._id, this.randomPokemon._id);
+      this._pokemonService.addPokemon(this.$user._id, this.$randomPokemon._id);
     };
     btnUpdate.onclick = () => {
       this.getRandomPokemon();
@@ -45,13 +47,13 @@ class ArenaModule {
       .getRandomPokemon()
       .then((pokemon) => {
         pokeContainer.innerHTML = "";
-        this.randomPokemon = pokemon;
+        this.$randomPokemon = pokemon;
         const img = document.createElement("img");
         pokeContainer.appendChild(img);
         if (img) {
           img.setAttribute(
             "src",
-            `https://play.pokemonshowdown.com/sprites/xyani/${this.randomPokemon.name}.gif`
+            `https://play.pokemonshowdown.com/sprites/xyani/${this.$randomPokemon.name}.gif`
           );
         }
       })
