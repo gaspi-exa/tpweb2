@@ -28,7 +28,7 @@
 
     <section class="arena-section">
       <div class="poke-container">
-        <img id="random-pokemon" src="https://play.pokemonshowdown.com/sprites/xyani/zapdos.gif" alt="Zapdos" />
+        <img id="random-pokemon" src="https://play.pokemonshowdown.com/sprites/xyani/zapdos.gif" />
       </div>
     </section>
 

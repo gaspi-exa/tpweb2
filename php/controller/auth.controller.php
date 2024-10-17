@@ -84,6 +84,7 @@ class AuthController
             if (isset($user_db) && $user_db) {
                 if (password_verify($password, $user_db->password)) {
                     $_SESSION['NAME'] = $user_db->name;
+                    $_SESSION['USER_ID'] = $user_db->_id;
                     session_start();
                     //$_SESSION['LAST_ACTIVITY'] = time();
                     $this->showArena($user_db);
@@ -109,7 +110,7 @@ class AuthController
         session_destroy(); // Borra la cookie que se buscó
         header('Location: ' . BASE_URL);
     }
-    
+
 
     // public function login()
     // {

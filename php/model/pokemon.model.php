@@ -39,4 +39,11 @@ class PokemonModel
         $query->execute(array($id));
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
+    function addPokemon($user_id, $pokemon_id)
+    {
+        $query = $this->db->prepare('INSERT INTO user_pokemon(user_id, pokemon_id) VALUES(?, ?)');
+        $query->execute(array($user_id, $pokemon_id));
+        return $this->db->lastInsertId();
+    }
 }

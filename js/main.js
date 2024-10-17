@@ -4,13 +4,21 @@ import HomeModule from "./modules/home/Home.module.js";
 import AuthModule from "./modules/auth/Auth.module.js";
 import AdminModule from "./modules/admin/Admin.module.js";
 import EUserStatus from "./constants/user-status.js";
-import addPokemon from "./services/pokemon.add.js";
+import PokemonService from "./services/pokemon.service.js";
+import UserService from "./services/user.service.js";
 
 injectGlobalStyles();
 document.addEventListener("DOMContentLoaded", () => new Main().onInit());
 
 class Main {
   $root;
+  $randomPokemon;
+  $user;
+
+  constructor() {
+    this._pokemonService = new PokemonService();
+    this._userService = new UserService();
+  }
 
   onInit = () => {
     this.checkRoots();
@@ -38,6 +46,7 @@ class Main {
     }
 
     this.getRandomPokemon();
+    this.getUser();
 
     const btnPower = document.getElementById("btn-power");
     if (btnPower) {
@@ -48,7 +57,7 @@ class Main {
     const btnPokeball = document.getElementById("send");
     if (btnPower) {
       btnPokeball.onclick = () => {
-        addPokemon(1, 145);
+        this._pokemonService.addPokemon(this.$user._id, this.randomPokemon._id);
       };
     }
     const btnUpdate = document.getElementById("btn-update");
@@ -73,25 +82,32 @@ class Main {
   };
 
   getRandomPokemon = () => {
-    fetch("http://localhost/projects/tpweb2/api/getRandomPokemon", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        mode: "no-cors",
-      },
-    })
-      .then((response) => response.json())
+    this._pokemonService
+      .getRandomPokemon()
       .then((pokemon) => {
-        const pokemonImg = document.getElementById("random-pokemon");
-        if (pokemonImg) {
-          pokemonImg.setAttribute(
+        this.randomPokemon = pokemon;
+        const img = document.getElementById("random-pokemon");
+        if (img) {
+          img.setAttribute(
             "src",
-            `https://play.pokemonshowdown.com/sprites/xyani/${pokemon.name}.gif`
+            `https://play.pokemonshowdown.com/sprites/xyani/${this.randomPokemon.name}.gif`
           );
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error(error);
+      });
+  };
+
+  getUser = () => {
+    this._userService
+      .getUser()
+      .then((user) => {
+        this.$user = user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 }

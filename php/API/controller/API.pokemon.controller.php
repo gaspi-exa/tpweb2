@@ -4,6 +4,7 @@ require_once 'php/model/pokemon.model.php';
 require_once 'php/api/view/API.view.php';
 require_once 'php/api/controller/API.controller.php';
 require_once 'php/controller/pokemon.controller.php';
+require_once 'php/helpers/auth.helper.php';
 
 class APIPokemonController extends APIController
 {
@@ -11,6 +12,7 @@ class APIPokemonController extends APIController
     private $model;
     private $view;
     private $pokemonController;
+    private $authHelper;
 
     function __construct()
     {
@@ -18,29 +20,27 @@ class APIPokemonController extends APIController
         $this->model = new PokemonModel();
         $this->view = new APIView();
         $this->pokemonController = new PokemonController();
+        $this->authHelper = new AuthHelper();
     }
 
     public function getRandomPokemon()
     {
         $this->view->response($this->pokemonController->getRandomPokemonID(), 200);
     }
-    // public function addPokemon($userId, $pokemonId)
-    // {
-    //     try {
-    //         // Prepara la consulta SQL
-    //         $query = 'INSERT INTO user_pokemon (user_id, pokemon_id) VALUES (:user_id, :pokemon_id)';
-    //         $stmt = $this->db->prepare($query);
 
-    //         // Vincula los parámetros
-    //         $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-    //         $stmt->bindParam(':pokemon_id', $pokemonId, PDO::PARAM_INT);
-
-    //         // Ejecuta la consulta
-    //         return $stmt->execute();
-    //     } catch (PDOException $e) {
-    //         // Manejo de errores
-    //         echo "Error: " . $e->getMessage();
-    //         return false;
-    //     }
-    // }
+    public function addPokemonByUser()
+    {
+        session_start();
+        if ($this->authHelper->checkLoggedIn()) {
+            $pokemon = $this->getData();
+            $response = $this->model->addPokemon(
+                $_SESSION['USER_ID'],
+                $pokemon->pokemon_id
+            );
+            if ($response)
+                $this->view->response($response, 200);
+            else
+                $this->view->response("Pokemon has not been added", 404);
+        }
+    }
 }
