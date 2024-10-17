@@ -3,7 +3,6 @@
 //require_once 'php/API/controller/API.comment.controller.php';
 require_once 'php/API/controller/API.pokemon.controller.php';
 require_once 'RouterClass.php';
-require_once ''
 
 $r = new Router();
 

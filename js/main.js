@@ -36,6 +36,9 @@ class Main {
         //   break;
       }
     }
+
+    this.getRandomPokemon();
+
     const btnPower = document.getElementById("btn-power");
     if (btnPower) {
       btnPower.onclick = () => {
@@ -46,6 +49,12 @@ class Main {
     if (btnPower) {
       btnPokeball.onclick = () => {
         addPokemon(1, 145);
+      };
+    }
+    const btnUpdate = document.getElementById("btn-update");
+    if (btnUpdate) {
+      btnUpdate.onclick = () => {
+        this.getRandomPokemon();
       };
     }
   };
@@ -61,5 +70,28 @@ class Main {
       document.getElementById(Route.PRIVATE),
     ];
     this.$root = roots.find((root) => root !== null);
+  };
+
+  getRandomPokemon = () => {
+    fetch("http://localhost/projects/tpweb2/api/getRandomPokemon", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        mode: "no-cors",
+      },
+    })
+      .then((response) => response.json())
+      .then((pokemon) => {
+        const pokemonImg = document.getElementById("random-pokemon");
+        if (pokemonImg) {
+          pokemonImg.setAttribute(
+            "src",
+            `https://play.pokemonshowdown.com/sprites/xyani/${pokemon.name}.gif`
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 }

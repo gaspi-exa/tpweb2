@@ -41,9 +41,9 @@ class PokemonController
     {
         return $this->model->getPokemonsSession($userId);
     }
-    
-   public function getRandomPokemonID (){
-        return rand(1,151);
-   }
-    
+
+    public function getRandomPokemonID()
+    {
+        return $this->model->getPokemonByID(rand(1, 151));
+    }
 }

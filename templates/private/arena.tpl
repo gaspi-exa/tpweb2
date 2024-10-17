@@ -23,14 +23,14 @@
     </aside>
 
     <button class="pokeball-container" id="send">
-    <img src="./js/assets/img/poke2.png" alt="Pokeball" />
+      <img src="./js/assets/img/poke2.png" alt="Pokeball" />
     </button>
-  
-  <section class="arena-section">
-    <div class="poke-container">
-      <img src="https://play.pokemonshowdown.com/sprites/xyani/zapdos.gif" alt="Zapdos" />
-    </div>
-  </section>
+
+    <section class="arena-section">
+      <div class="poke-container">
+        <img id="random-pokemon" src="https://play.pokemonshowdown.com/sprites/xyani/zapdos.gif" alt="Zapdos" />
+      </div>
+    </section>
 
     <aside class="list">
       <div class="list-container">
