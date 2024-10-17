@@ -9,6 +9,7 @@
             <img src="./js/assets/icons/power.svg" />
           </button>
           <span class="user-name">{$userName}</span>
+          <span id="user-id" style="display: none;">{$userId}</span>
         </div>
 
         <section class="actions">

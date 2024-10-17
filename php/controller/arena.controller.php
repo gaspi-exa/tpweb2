@@ -7,19 +7,19 @@ require_once 'php/controller/auth.controller.php';
 class ArenaController
 {
     private $pokemonsByUser;
-    private $pokemonController;
+    private $pokemonModel;
     private $view;
 
     public function __construct()
     {
         $this->view = new ArenaView();
-        $this->pokemonController = new PokemonController();
+        $this->pokemonModel = new PokemonModel();
     }
 
     public function index($userName, $userId)
     {
-        $this->setPokemons($this->pokemonController->showPokemonsSession($userId));
-        $this->view->render($this->pokemonsByUser, $userName);
+        $this->setPokemons($this->pokemonModel->getPokemonsSession($userId));
+        $this->view->render($this->pokemonsByUser, $userName, $userId);
     }
 
     public function getPokemons()

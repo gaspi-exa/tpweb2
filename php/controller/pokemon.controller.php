@@ -16,7 +16,6 @@ class PokemonController
         $this->model = new PokemonModel();
         $this->view = new PokemonView();
         $this->pokemons = $this->getPokemons();
-        // $this->showPokemons();
     }
 
     public function getPokemons()
@@ -35,11 +34,6 @@ class PokemonController
         $c = new CategoryController();
         $this->categories = $c->getCategories();
         $this->view->renderHome($this->pokemons, $this->categories);
-    }
-
-    public function showPokemonsSession($userId = null)
-    {
-        return $this->model->getPokemonsSession($userId);
     }
 
     public function getRandomPokemonID()

@@ -7,7 +7,6 @@ class ArenaModule {
   $service;
   $root;
   $randomPokemon;
-  $user;
 
   constructor(root) {
     this.$root = root;
@@ -22,12 +21,13 @@ class ArenaModule {
     const btnPower = document.getElementById("btn-power");
     const btnPokeball = document.getElementById("send");
     const btnUpdate = document.getElementById("btn-update");
+    const userId = document.getElementById("user-id").innerHTML;
 
     btnPower.onclick = () => {
       window.open(Route.LOGOUT, "_self");
     };
     btnPokeball.onclick = () => {
-      this._pokemonService.addPokemon(this.$user._id, this.$randomPokemon._id);
+      this._pokemonService.addPokemon(userId, this.$randomPokemon._id);
     };
     btnUpdate.onclick = () => {
       this.getRandomPokemon();

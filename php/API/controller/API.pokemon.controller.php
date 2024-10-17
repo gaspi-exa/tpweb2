@@ -37,7 +37,7 @@ class APIPokemonController extends APIController
         if ($this->authHelper->checkLoggedIn()) {
             $pokemon = $this->getData();
             $response = $this->model->addPokemon(
-                $_SESSION['USER_ID'],
+                $pokemon->user_id,
                 $pokemon->pokemon_id
             );
             if ($response)
