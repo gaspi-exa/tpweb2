@@ -18,6 +18,7 @@ class APIUserController extends APIController
         $this->authHelper = new AuthHelper();
     }
 
+
     public function getUser()
     {
         session_start();

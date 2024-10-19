@@ -13,6 +13,8 @@ $r = new Router();
 /* POKEMON */
 $r->addRoute('addPokemon', 'POST', 'APIPokemonController', 'addPokemonByUser');
 $r->addRoute('getRandomPokemon', 'GET', 'APIPokemonController', 'getRandomPokemon');
+$r->addRoute('getPokemonTeam', 'GET', 'APIPokemonController', 'getPokemonTeam');
+    
 /* USER */
 $r->addRoute('getUser', 'GET', 'APIUserController', 'getUser');
 

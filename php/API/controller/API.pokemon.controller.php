@@ -40,10 +40,23 @@ class APIPokemonController extends APIController
                 $pokemon->user_id,
                 $pokemon->pokemon_id
             );
+            echo var_dump($response);
             if ($response)
+                
                 $this->view->response($response, 200);
             else
                 $this->view->response("Pokemon has not been added", 404);
         }
     }
+    public function getPokemonTeam ($user_id)
+    {
+        if ($this->authHelper->checkLoggedIn())
+        {
+            $team = $this->model->getPokemonSession($user_id);
+        }
+       
+        return $team;
+    }
+
+    
 }

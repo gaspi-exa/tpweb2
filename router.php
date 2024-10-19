@@ -17,7 +17,7 @@ $r->addRoute('arena', 'POST', 'AuthController', 'verifyUser');
 $r->addRoute('signup', 'GET', 'AuthController', 'showSignup');
 $r->addRoute('logout', 'GET', 'AuthController', 'showLogout');
 $r->addRoute('logout', 'POST', 'AuthController', 'logout');
-
+$r->addRoute('arena', 'GET', 'PokemonController', 'getPokemonsByUser');
 
 /* ARENA */
 

@@ -7,6 +7,7 @@ class ArenaModule {
   $service;
   $root;
   $randomPokemon;
+  $userId;
 
   constructor(root) {
     this.$root = root;
@@ -16,23 +17,24 @@ class ArenaModule {
 
   onInit = () => {
     this.getRandomPokemon();
-    this.getUser();
 
     const btnPower = document.getElementById("btn-power");
     const btnPokeball = document.getElementById("send");
     const btnUpdate = document.getElementById("btn-update");
-    const userId = document.getElementById("user-id").innerHTML;
+    this.userId = document.getElementById("user-id").innerHTML;
 
     btnPower.onclick = () => {
       window.open(Route.LOGOUT, "_self");
     };
     btnPokeball.onclick = () => {
-      this._pokemonService.addPokemon(userId, this.$randomPokemon._id);
+      this.addPokemon();
+
     };
     btnUpdate.onclick = () => {
       this.getRandomPokemon();
     };
   };
+
 
   getRandomPokemon = () => {
     const pokeContainer = document.querySelector(".poke-container");
@@ -62,17 +64,37 @@ class ArenaModule {
       });
   };
 
-  getUser = () => {
-    this._userService
-      .getUser()
-      .then((user) => {
-        this.$user = user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  addPokemon = async () => {
+    const pokeUserContainer = document.querySelector(".list-container");
+    const response = await this._pokemonService.addPokemon(this.userId, this.$randomPokemon._id);
+    pokeUserContainer.innerHTML = "";
+    response.forEach((poke) => {
+      const listItem = document.createElement("div");
+      listItem.classList.add("list-item");
+      const pokeItem = document.createElement("div");
+      pokeItem.classList.add("poke-item");
+      const img = document.createElement("img");
+      img.setAttribute(
+        "src",
+        `https://play.pokemonshowdown.com/sprites/xyani/${poke.name}.gif`
+      );
+      img.setAttribute("alt", poke.name);
+      pokeItem.appendChild(img);
+      const pokeName = document.createElement("h1");
+      pokeName.textContent = poke.name;
+      listItem.appendChild(pokeItem);
+      listItem.appendChild(pokeName);
+      pokeUserContainer.appendChild(listItem);
+    });
+
+
+
+  }
+
+
+
+
 }
+
 
 export default ArenaModule;
