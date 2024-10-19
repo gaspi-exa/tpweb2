@@ -1,5 +1,5 @@
 class PokemonService {
-  url = "http://localhost/tpw/api";
+  url = "http://localhost/projects/tpweb2/api";
 
   getRandomPokemon = async () => {
     try {
@@ -18,11 +18,12 @@ class PokemonService {
       return [];
     }
   };
-  
-  async addPokemon(userId, pokemonId) {
+
+  addPokemon = async (userId, pokemonId) => {
     try {
       const response = await fetch(`${this.url}/addPokemon`, {
         method: "POST",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -31,35 +32,24 @@ class PokemonService {
           pokemon_id: pokemonId,
         }),
       });
-      
       return await response.json();
-  
-      } catch (error) {
-      console.error("Error:", error);
+    } catch (error) {
+      alert("ERROR adding pokemon", error);
     }
-  }
-  
-
+  };
 
   getPokemonsByUser = async (userId) => {
     try {
-      const response = await fetch(`${this.url}/getPokemonTeam`, {
+      const response = await fetch(`${this.url}/getPokemonTeam/${userId}`, {
         method: "GET",
         mode: "cors",
-        body: JSON.stringify({
-          user_id: userId,
-        })
       });
-  
-      
+
       return await response.json();
     } catch (error) {
       console.error("Error fetching pokemons:", error);
-      return [];
     }
   };
 }
-
-
 
 export default PokemonService;

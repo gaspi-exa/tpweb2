@@ -1,5 +1,5 @@
 class UserService {
-  url = "http://localhost/tpw/api";
+  url = "http://localhost/projects/tpweb2/api";
 
   getUser = async () => {
     try {
