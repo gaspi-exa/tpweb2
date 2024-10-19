@@ -40,10 +40,11 @@ class APIPokemonController extends APIController
                 $pokemon->user_id,
                 $pokemon->pokemon_id
             );
-            if ($response)
-                $this->view->response($response, 200);
-            else
-                $this->view->response("Pokemon has not been added", 404);
+            $this->view->response($response, 200);
+            // if ($response)
+            //     $this->view->response($response, 200);
+            // else
+            //     $this->view->response("Pokemon has not been added", 404);
         }
     }
 }

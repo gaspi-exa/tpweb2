@@ -7,6 +7,7 @@ class ArenaModule {
   $service;
   $root;
   $randomPokemon;
+  $userId;
 
   constructor(root) {
     this.$root = root;
@@ -16,18 +17,16 @@ class ArenaModule {
 
   onInit = () => {
     this.getRandomPokemon();
-    this.getUser();
-
     const btnPower = document.getElementById("btn-power");
     const btnPokeball = document.getElementById("send");
     const btnUpdate = document.getElementById("btn-update");
-    const userId = document.getElementById("user-id").innerHTML;
+    this.$userId = Number(document.getElementById("user-id").innerHTML);
 
     btnPower.onclick = () => {
       window.open(Route.LOGOUT, "_self");
     };
     btnPokeball.onclick = () => {
-      this._pokemonService.addPokemon(userId, this.$randomPokemon._id);
+      this.addPokemon();
     };
     btnUpdate.onclick = () => {
       this.getRandomPokemon();
@@ -62,16 +61,18 @@ class ArenaModule {
       });
   };
 
-  getUser = () => {
-    this._userService
-      .getUser()
-      .then((user) => {
-        this.$user = user;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  addPokemon = () => {
+    console.log(this.$userId);
+    console.log(this.$randomPokemon._id);
+    const promise = this._pokemonService.addPokemon(
+      this.$userId,
+      this.$randomPokemon._id
+    );
+    promise.then((response) => {
+      if (response) {
+        
+      }
+    });
   };
 }
 

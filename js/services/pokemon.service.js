@@ -19,28 +19,23 @@ class PokemonService {
     }
   };
 
-  addPokemon = (userId, pokemonId) => {
-    fetch(`${this.url}/addPokemon`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_id: userId,
-        pokemon_id: pokemonId,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          alert("Pokémon agregado exitosamente");
-        } else {
-          alert("Error al agregar Pokémon");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+  addPokemon = async (userId, pokemonId) => {
+    try {
+      const response = await fetch(`${this.url}/addPokemon`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          pokemon_id: pokemonId,
+        }),
       });
+      return await response.json();
+    } catch (error) {
+      alert("ERROR adding pokemon", error);
+    }
   };
 }
 
