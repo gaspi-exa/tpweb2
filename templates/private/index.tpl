@@ -1,9 +1,34 @@
 {include file='head.tpl'}
 
 <body>
+  <div class="modal hidden" id="modal">
+    <div class="modal-container" id="modal">
+      <button id="btn-close-modal" class="close">X</button>
+      <img class="img-modal-big" id="pokemon-img" />
+      <div class="d-flex">
+        <div class="d-flex">
+          <div id="pokemon-data">
+          </div>
+          <div class="gif-container">
+            <img class="img-modal" id="pokemon-gif" />
+          </div>
+        </div>
+        <select id="select-rarity">
+          <option disabled selected>
+            Select Rarity...
+          </option>
+          {foreach $rarities as $r}
+            <option value="{$r->_id}">
+              {$r->description}
+            </option>
+          {/foreach}
+        </select>
+      </div>
+    </div>
+  </div>
   <main id="categories">
 
-    <button id="btn-back">
+    <button id="btn-back" class="btn-back">
       <- </button>
         <section class="table-section">
           {foreach $categories as $c}
@@ -15,26 +40,8 @@
                 {foreach $pokemons as $p}
                   {if $p->category == $c->_id}
                     <div class="poke-container">
-                      <a href="#modal{$p->_id}">
+                      <div class="pokemon-item" data-id="{$p->name}">
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$p->_id}.png" />
-                      </a>
-                    </div>
-
-                    {* MODAL *}
-
-                    <div id="modal{$p->_id}" class="modalmask">
-                      <div class="modalbox rotate">
-                        <a href="#close" title="Close" class="close">X</a>
-                        <img class="img-modal" src="https://img.pokemondb.net/sprites/home/normal/{$p->name}.png" />
-                        <div class="d-flex">
-                          <div>
-                            <h2>{$p->name|upper}</h2>
-                            <p>{$c->name}</p>
-                          </div>
-                          <div>
-                            <img class="img-modal" src="https://play.pokemonshowdown.com/sprites/xyani/{$p->name}.gif" />
-                          </div>
-                        </div>
                       </div>
                     </div>
                   {/if}
@@ -44,6 +51,7 @@
           {/foreach}
         </section>
   </main>
+
 </body>
 
 </html>

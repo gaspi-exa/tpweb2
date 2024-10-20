@@ -78,4 +78,15 @@ class APIPokemonController extends APIController
             $this->view->response($response, 200);
         }
     }
+
+    public function updateRarity($params = null)
+    {
+        session_start();
+        if ($this->authHelper->checkLoggedIn()) {
+            $pokemon_id = $params[':ID'];
+            $body = $this->getData();
+            $response = $this->model->updateRarity($pokemon_id, $body->rarity);
+            $this->view->response($response, 200);
+        }
+    }
 }

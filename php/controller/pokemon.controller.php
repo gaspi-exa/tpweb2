@@ -12,6 +12,7 @@ class PokemonController
     private $authController;
     private $view;
     private $categories;
+    private $rarities;
 
     public function __construct()
     {
@@ -43,7 +44,8 @@ class PokemonController
     {
         $c = new CategoryController();
         $this->categories = $c->getCategories();
-        $this->view->renderCategories($this->pokemons, $this->categories);
+        $this->rarities = $this->model->getRarities();
+        $this->view->renderCategories($this->pokemons, $this->categories, $this->rarities);
     }
 
     public function getRandomPokemonID()

@@ -86,6 +86,24 @@ class PokemonService {
       alert("ERROR deleting pokemon", error);
     }
   };
+
+  updatePokemon = async (pokemonId, rarity) => {
+    try {
+      const response = await fetch(`${this.url}/updateRarity/${pokemonId}`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          rarity,
+        }),
+      });
+      return await response.json();
+    } catch (error) {
+      alert("ERROR updating pokemon", error);
+    }
+  };
 }
 
 export default PokemonService;

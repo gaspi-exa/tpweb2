@@ -19,11 +19,12 @@ class PokemonView
         $this->smarty->display('templates/public/index.tpl');
     }
 
-    public function renderCategories($pokemons, $categories)
+    public function renderCategories($pokemons, $categories, $rarities)
     {
         $this->smarty->assign('pokemons', $pokemons);
         $this->smarty->assign('categories', $categories);
-        $this->smarty->assign('styleFileName', 'home');
+        $this->smarty->assign('rarities', $rarities);
+        $this->smarty->assign('styleFileName', 'categories');
         $this->smarty->display('templates/private/index.tpl');
     }
 }

@@ -29,6 +29,6 @@ class ArenaView
         $this->smarty->assign('allPokemons', $allPokemons);
         $this->smarty->assign('tableData', $tableData);
         $this->smarty->assign('styleFileName', 'admin');
-        $this->smarty->display('templates/private/admin/arena.tpl');
+        $this->smarty->display('templates/private/admin/index.tpl');
     }
 }
