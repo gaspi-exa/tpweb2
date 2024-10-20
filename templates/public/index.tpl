@@ -21,6 +21,7 @@
 
     <div class="btn-container">
       <button id="btn-login">LOGIN</button>
+      <img src="js/assets/img/poke-logo.png">
       <button id="btn-signup">SIGNUP</button>
     </div>
 
