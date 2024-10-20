@@ -25,6 +25,6 @@ class PokemonView
         $this->smarty->assign('categories', $categories);
         $this->smarty->assign('rarities', $rarities);
         $this->smarty->assign('styleFileName', 'categories');
-        $this->smarty->display('templates/private/index.tpl');
+        $this->smarty->display('templates/private/admin/category.tpl');
     }
 }

@@ -18,7 +18,7 @@ class ArenaView
         $this->smarty->assign('userId', $userId);
         $this->smarty->assign('pokemonsByUser', $pokemonsByUser);
         $this->smarty->assign('styleFileName', 'arena');
-        $this->smarty->display('templates/private/arena.tpl');
+        $this->smarty->display('templates/private/user/arena.tpl');
     }
 
     public function renderAdmin($allUsers, $userName, $userId, $tableData, $allPokemons)

@@ -43,7 +43,7 @@ class Form {
     useStyles(this.$form, form);
 
     this.setBackground();
-    const btnBack = document.createElement("button");
+    const btnBack = document.getElementById("btn-back");
     btnBack.innerHTML = "<-";
     btnBack.classList.add("btn-back");
     btnBack.addEventListener("click", (e) => {

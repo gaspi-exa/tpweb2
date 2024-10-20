@@ -17,9 +17,6 @@
           <button id="btn-table">
             <img src="./js/assets/icons/table.svg" />
           </button>
-          <button id="btn-update">
-            <img src="./js/assets/icons/update.svg" />
-          </button>
         </section>
       </div>
     </aside>

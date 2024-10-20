@@ -26,8 +26,8 @@
       </div>
     </div>
   </div>
-  <main id="categories">
 
+  <main id="categories">
     <button id="btn-back" class="btn-back">
       <- </button>
         <section class="table-section">
