@@ -90,10 +90,10 @@ class AuthController
             $user_db = $this->userModel->getUser($userName);
             if (isset($user_db) && $user_db) {
                 if (password_verify($password, $user_db->password)) {
+                    session_start();
                     $_SESSION['NAME'] = $user_db->name;
                     $_SESSION['USER_ID'] = $user_db->_id;
                     $this->user = $user_db;
-                    session_start();
                     if ($user_db->clearance == 'admin') {
                         $this->showAdminHome($user_db);
                     } else {

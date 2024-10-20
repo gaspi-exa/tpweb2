@@ -27,8 +27,7 @@ $r->addRoute('categories', 'GET', 'PokemonController', 'showCategories');
 
 /* ADMIN */
 
-// $r->addRoute('admin', 'GET', 'PokemonController', 'showPokemonsAdmin');
-$r->addRoute('arena', 'POST', 'AuthController', 'verifyUser');
+$r->addRoute('admin/categories', 'GET', 'PokemonController', 'showCategoriesAdmin');
 
 $r->setDefaultRoute('PokemonController', 'showPokemons');
 

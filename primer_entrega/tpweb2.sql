@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2024 a las 07:37:57
+-- Tiempo de generación: 20-10-2024 a las 18:58:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 SET
@@ -64,21 +64,6 @@ VALUES
   (18, 'Normal');
 
 -- --------------------------------------------------------
-CREATE TABLE `rarity` (
-  `_id` int(11) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  PRIMARY KEY (`_id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
-
-INSERT INTO
-  `rarity` (`_id`, `description`)
-VALUES
-  (1, 'Common'),
-  (2, 'Uncommon'),
-  (3, 'Rare'),
-  (4, 'Very rare'),
-  (5, 'Legendary');
-
 --
 -- Estructura de tabla para la tabla `pokemon`
 --
@@ -87,10 +72,7 @@ CREATE TABLE `pokemon` (
   `name` varchar(100) NOT NULL,
   `url` varchar(300) DEFAULT NULL,
   `category` int(11) DEFAULT NULL,
-  `rarity` int(11) DEFAULT NULL,
-  -- Nueva columna para la rareza
-  PRIMARY KEY (`_id`),
-  FOREIGN KEY (`rarity`) REFERENCES `rarity`(`_id`) -- Llave foránea que referencia a `rarity`
+  `rarity` int(11) DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 --
@@ -105,7 +87,7 @@ VALUES
   (4, 'charmander', NULL, 2, 2),
   (5, 'charmeleon', NULL, 2, 2),
   (6, 'charizard', NULL, 2, 3),
-  (7, 'squirtle', NULL, 1, 2),
+  (7, 'squirtle', NULL, 1, 5),
   (8, 'wartortle', NULL, 1, 2),
   (9, 'blastoise', NULL, 1, 3),
   (10, 'caterpie', NULL, 10, 1),
@@ -142,14 +124,14 @@ VALUES
   (35, 'clefairy', NULL, 17, 2),
   (36, 'clefable', NULL, 17, 3),
   (37, 'vulpix', NULL, 2, 1),
-  (38, 'ninetales', NULL, 2, 3),
+  (38, 'ninetales', NULL, 2, 5),
   (39, 'jigglypuff', NULL, 17, 1),
   (40, 'wigglytuff', NULL, 17, 2),
   (41, 'zubat', NULL, 11, 1),
   (42, 'golbat', NULL, 11, 2),
   (43, 'oddish', NULL, 3, 1),
-  (44, 'gloom', NULL, 3, 2),
-  (45, 'vileplume', NULL, 3, 3),
+  (44, 'gloom', NULL, 3, 1),
+  (45, 'vileplume', NULL, 3, 4),
   (46, 'paras', NULL, 10, 1),
   (47, 'parasect', NULL, 10, 2),
   (48, 'venonat', NULL, 10, 1),
@@ -211,7 +193,7 @@ VALUES
   (98, 'krabby', NULL, 1, 1),
   (99, 'kingler', NULL, 1, 2),
   (100, 'voltorb', NULL, 4, 1),
-  (101, 'electrode', NULL, 4, 2),
+  (101, 'electrode', NULL, 4, 3),
   (102, 'exeggcute', NULL, 3, 1),
   (103, 'exeggutor', NULL, 3, 2),
   (104, 'cubone', NULL, 6, 1),
@@ -235,7 +217,7 @@ VALUES
   (122, 'mr-mime', NULL, 17, 2),
   (123, 'scyther', NULL, 10, 2),
   (124, 'jynx', NULL, 9, 2),
-  (125, 'electabuzz', NULL, 4, 3),
+  (125, 'electabuzz', NULL, 4, 2),
   (126, 'magmar', NULL, 2, 3),
   (127, 'pinsir', NULL, 10, 2),
   (128, 'tauros', NULL, 18, 2),
@@ -271,6 +253,27 @@ VALUES
 
 -- --------------------------------------------------------
 --
+-- Estructura de tabla para la tabla `rarity`
+--
+CREATE TABLE `rarity` (
+  `_id` int(11) NOT NULL,
+  `description` varchar(100) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `rarity`
+--
+INSERT INTO
+  `rarity` (`_id`, `description`)
+VALUES
+  (1, 'Common'),
+  (2, 'Uncommon'),
+  (3, 'Rare'),
+  (4, 'Very rare'),
+  (5, 'Legendary');
+
+-- --------------------------------------------------------
+--
 -- Estructura de tabla para la tabla `user`
 --
 CREATE TABLE `user` (
@@ -301,30 +304,33 @@ VALUES
     '$2y$10$Ap5w.v7wmRqcFZYPd7J54OCKvNHfHnHjdt2UpyOPeqYm/06Ffsefa',
     ''
   ),
-  (3, 'Brock', '3', '', ''),
-  (4, 'Ash Ketchum', '5', '', ''),
-  (5, 'Misty', '4', '', ''),
-  (6, 'Brock', '3', '', ''),
   (
-    7,
-    'PIKACHU',
-    'user',
-    '$2y$10$Ap5w.v7wmRqcFZYPd7J54OCKvNHfHnHjdt2UpyOPeqYm/06Ffsefa',
-    'p@p.com'
+    3,
+    'Brock',
+    '3',
+    '$2y$10$PsE5t1kdTGB.Q9teL7gugO6mLc2NgUIt2LBl3IrimQX8f0PipxHme',
+    ''
   ),
   (
-    8,
-    'BULBA',
-    'user',
-    '$2y$10$VfIQhoP/hmGLMWnLCLWG3O9IkuHpvuh4qtkEIp56RckqLFHuzMGYi',
-    'b@b.com'
+    4,
+    'Ash Ketchum',
+    '5',
+    '$2y$10$PsE5t1kdTGB.Q9teL7gugO6mLc2NgUIt2LBl3IrimQX8f0PipxHme',
+    ''
   ),
   (
-    9,
-    'BULBA2',
-    'user',
-    '$2y$10$AYZSG27R30e5OalsNJf4puYx.BTMxFiZguZ0sEmB0vA4I1cQHku0a',
-    '1@1.com'
+    5,
+    'Misty',
+    '4',
+    '$2y$10$PsE5t1kdTGB.Q9teL7gugO6mLc2NgUIt2LBl3IrimQX8f0PipxHme',
+    ''
+  ),
+  (
+    6,
+    'Brock',
+    '3',
+    '$2y$10$PsE5t1kdTGB.Q9teL7gugO6mLc2NgUIt2LBl3IrimQX8f0PipxHme',
+    ''
   ),
   (
     10,
@@ -339,6 +345,13 @@ VALUES
     'user',
     '$2y$10$Wip8x09nMZ47mGnSh5H4zOEyzu2/kt//SNNgg2Q.Afl3luTj/4Fj.',
     'lauta@lauta.com'
+  ),
+  (
+    0,
+    'WEBADMIN',
+    'admin',
+    '$2y$10$BhO3FxaImeLXH.FZMvuv7OPfflrWbO3NhyirVOoGO0f4eVkOvn/pq',
+    'admin@pro.com'
   );
 
 -- --------------------------------------------------------
@@ -358,16 +371,22 @@ INSERT INTO
 VALUES
   (10, 38),
   (10, 48),
-  (10, 69),
   (11, 28),
   (11, 62),
-  (11, 117),
   (11, 78),
   (10, 0),
   (10, 0),
   (10, 0),
   (11, 70),
-  (11, 103);
+  (11, 103),
+  (0, 65),
+  (0, 73),
+  (0, 52),
+  (0, 105),
+  (11, 110),
+  (11, 94),
+  (10, 7),
+  (11, 87);
 
 --
 -- Índices para tablas volcadas
@@ -388,27 +407,17 @@ ALTER TABLE
 ADD
   PRIMARY KEY (`_id`),
 ADD
+  KEY `rarity` (`rarity`),
+ADD
   KEY `fk_category` (`category`);
 
 --
--- Indices de la tabla `user`
+-- Indices de la tabla `rarity`
 --
 ALTER TABLE
-  `user`
+  `rarity`
 ADD
   PRIMARY KEY (`_id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
---
--- AUTO_INCREMENT de la tabla `user`
---
-ALTER TABLE
-  `user`
-MODIFY
-  `_id` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 12;
 
 --
 -- Restricciones para tablas volcadas
@@ -419,9 +428,7 @@ MODIFY
 ALTER TABLE
   `pokemon`
 ADD
-  CONSTRAINT `fk_category` FOREIGN KEY (`category`) REFERENCES `category` (`_id`) ON DELETE
-SET
-  NULL ON UPDATE CASCADE;
+  CONSTRAINT `pokemon_ibfk_1` FOREIGN KEY (`rarity`) REFERENCES `rarity` (`_id`);
 
 COMMIT;
 

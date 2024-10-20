@@ -15,7 +15,7 @@ class AdminModule {
 
     const btnTable = document.getElementById("btn-table");
     btnTable.onclick = () => {
-      window.open(Route.CATEGORIES, "_self");
+      window.open("admin/" + Route.CATEGORIES, "_self");
     };
 
     const selectsPoke = document.querySelectorAll(".select-user");
