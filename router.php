@@ -5,6 +5,7 @@ require_once 'php/controller/pokemon.controller.php';
 require_once 'php/controller/auth.controller.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
+define('ADMIN', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/admin');
 
 $r = new Router();
 
@@ -17,11 +18,16 @@ $r->addRoute('arena', 'POST', 'AuthController', 'verifyUser');
 $r->addRoute('signup', 'GET', 'AuthController', 'showSignup');
 $r->addRoute('logout', 'GET', 'AuthController', 'showLogout');
 $r->addRoute('logout', 'POST', 'AuthController', 'logout');
-$r->addRoute('arena', 'GET', 'PokemonController', 'getPokemonsByUser');
 
 /* ARENA */
 
 $r->addRoute('arena', 'GET', 'ArenaController', 'index');
+$r->addRoute('arena', 'GET', 'PokemonController', 'getPokemonsByUser');
+
+/* ADMIN */
+
+// $r->addRoute('admin', 'GET', 'PokemonController', 'showPokemonsAdmin');
+$r->addRoute('arena', 'POST', 'AuthController', 'verifyUser');
 
 $r->setDefaultRoute('PokemonController', 'showPokemons');
 

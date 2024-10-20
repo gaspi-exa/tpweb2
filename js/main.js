@@ -32,18 +32,12 @@ class Main {
         case Route.LOGOUT:
           new AuthModule(this.$root, EUserStatus.LOGGED_IN).onInit();
           break;
-        case Route.HOME:
-          new HomeModule(this.$root).onInit();
-          break;
         case Route.ARENA:
           new ArenaModule(this.$root).onInit();
           break;
-        // case Route.PRIVATE:
-        //   new HomeModule(this.$root).onInit();
-        //   break;
-        // case Route.ADMIN:
-        //   new AdminModule(this.$root).onInit();
-        //   break;
+        case Route.ADMIN:
+          new AdminModule(this.$root).onInit();
+          break;
       }
     }
   };
@@ -54,12 +48,10 @@ class Main {
       document.getElementById(Route.SIGNUP),
       document.getElementById(Route.LOGIN),
       document.getElementById(Route.LOGOUT),
-      document.getElementById(Route.HOME),
       /* SESSION */
       document.getElementById(Route.ARENA),
-
-      // document.getElementById(Route.ADMIN),
-      // document.getElementById(Route.PRIVATE),
+      /* ADMIN */
+      document.getElementById(Route.ADMIN),
     ];
     this.$root = roots.find((root) => root !== null);
   };

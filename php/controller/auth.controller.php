@@ -2,6 +2,7 @@
 require_once 'php/model/user.model.php';
 require_once 'php/view/auth.view.php';
 require_once 'php/controller/arena.controller.php';
+require_once 'php/controller/admin.controller.php';
 require_once 'php/helpers/auth.helper.php';
 
 class AuthController
@@ -9,14 +10,17 @@ class AuthController
     private $userModel;
     private $view;
     private $arenaController;
+    private $adminController;
     private $authHelper;
     private $allUsers;
+    private $user;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->view = new AuthView();
         $this->arenaController = new ArenaController();
+        $this->adminController = new AdminController();
         $this->authHelper = new AuthHelper();
         $this->allUsers = $this->userModel->getAllUsers();
     }
@@ -47,7 +51,7 @@ class AuthController
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $clearence = 'user';
+        $clearance = 'user';
         if (isset($name) && !empty($name) && isset($email) && !empty($email) && isset($password) && !empty($password)) {
             $name = strtoupper($name);
             $encriptedPass = password_hash($password, PASSWORD_DEFAULT);
@@ -57,7 +61,7 @@ class AuthController
                 return;
             }
 
-            $this->userModel->createUser($name, $email, $encriptedPass, $clearence);
+            $this->userModel->createUser($name, $email, $encriptedPass, $clearance);
             $this->showLogin($name);
             return;
         }
@@ -88,9 +92,13 @@ class AuthController
                 if (password_verify($password, $user_db->password)) {
                     $_SESSION['NAME'] = $user_db->name;
                     $_SESSION['USER_ID'] = $user_db->_id;
-                    //$_SESSION['LAST_ACTIVITY'] = time();
+                    $this->user = $user_db;
                     session_start();
-                    $this->showArena($user_db);
+                    if ($user_db->clearance == 'admin') {
+                        $this->showAdminHome($user_db);
+                    } else {
+                        $this->showArena($user_db);
+                    }
                 } else {
                     $this->showError('Invalid password');
                 }
@@ -107,41 +115,19 @@ class AuthController
         $this->arenaController->index($user->name, $user->_id);
     }
 
+    public function showAdminHome($user)
+    {
+        $this->adminController->index($user->name, $user->_id);
+    }
+
     public function logout()
     {
         $this->authHelper->logOut();
     }
 
-
-    // public function login()
-    // {
-    //     if (!isset($_POST['email']) || empty($_POST['email'])) {
-    //         return $this->view->showLogin('Falta completar el nombre de usuario');
-    //     }
-
-    //     if (!isset($_POST['password']) || empty($_POST['password'])) {
-    //         return $this->view->showLogin('Falta completar la contraseña');
-    //     }
-
-    //     $email = $_POST['email'];
-    //     $password = $_POST['password'];
-
-    //     // Verificar que el usuario está en la base de datos
-    //     $userFromDB = $this->model->getUserByEmail($email);
-
-    //     // password: 123456
-    //     // $userFromDB->password: $2y$10$xQop0wF1YJ/dKhZcWDqHceUM96S04u73zGeJtU80a1GmM.H5H0EHC
-    //     if ($userFromDB && password_verify($password, $userFromDB->password)) {
-    //         // Guardo en la sesión el ID del usuario
-    //         session_start();
-    //         $_SESSION['ID_USER'] = $userFromDB->id;
-    //         $_SESSION['EMAIL_USER'] = $userFromDB->email;
-    //         $_SESSION['LAST_ACTIVITY'] = time();
-
-    //         // Redirijo al home
-    //         header('Location: ' . BASE_URL);
-    //     } else {
-    //         return $this->view->showLogin('Credenciales incorrectas');
-    //     }
-    // }
+    public function getUser()
+    {
+        // echo var_dump($this->user);
+        return $this->user;
+    }
 }

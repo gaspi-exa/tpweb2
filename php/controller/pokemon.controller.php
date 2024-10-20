@@ -3,17 +3,20 @@
 require_once 'php/model/pokemon.model.php';
 require_once 'php/view/pokemon.view.php';
 require_once 'php/controller/category.controller.php';
+require_once 'php/controller/auth.controller.php';
 
 class PokemonController
 {
     private $pokemons;
     private $model;
+    private $authController;
     private $view;
     private $categories;
 
     public function __construct()
     {
         $this->model = new PokemonModel();
+        $this->authController = new AuthController();
         $this->view = new PokemonView();
         $this->pokemons = $this->getPokemons();
     }

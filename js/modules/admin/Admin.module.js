@@ -9,11 +9,11 @@ class AdminModule {
   }
 
   onInit = () => {
-    const success = new Success();
-    this.$root.appendChild(success.getSuccess());
-    this.$root.onclick = () => {
-      window.open(EModules.HOME, "_self");
-    };
+    // const success = new Success();
+    // this.$root.appendChild(success.getSuccess());
+    // this.$root.onclick = () => {
+    //   window.open(EModules.ADMIN, "_self");
+    // };
   };
 
   setRoot(root) {

@@ -20,4 +20,14 @@ class ArenaView
         $this->smarty->assign('styleFileName', 'arena');
         $this->smarty->display('templates/private/arena.tpl');
     }
+
+    public function renderAdmin($allUsers, $userName, $userId, $tableData)
+    {
+        $this->smarty->assign('userName', $userName);
+        $this->smarty->assign('userId', $userId);
+        $this->smarty->assign('allUsers', $allUsers);
+        $this->smarty->assign('tableData', $tableData);
+        $this->smarty->assign('styleFileName', 'admin');
+        $this->smarty->display('templates/private/admin/arena.tpl');
+    }
 }
