@@ -25,9 +25,4 @@ class APIView
         );
         return (isset($status[$code])) ? $status[$code] : $status[500];
     }
-
-    public function vardampea($data)
-    {
-        var_dump($data);
-    }
 }

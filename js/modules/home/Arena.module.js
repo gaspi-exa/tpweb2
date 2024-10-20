@@ -20,6 +20,7 @@ class ArenaModule {
     const btnPower = document.getElementById("btn-power");
     const btnPokeball = document.getElementById("send");
     const btnUpdate = document.getElementById("btn-update");
+    const btnsDelete = document.querySelectorAll(".btn-delete");
     this.$userId = Number(document.getElementById("user-id").innerHTML);
 
     btnPower.onclick = () => {
@@ -31,6 +32,14 @@ class ArenaModule {
     btnUpdate.onclick = () => {
       this.getRandomPokemon();
     };
+
+    if (btnsDelete.length > 0) {
+      btnsDelete.forEach((btn) => {
+        btn.onclick = () => {
+          this.deletePokemon(btn.dataset.id);
+        };
+      });
+    }
   };
 
   getRandomPokemon = () => {
@@ -97,11 +106,35 @@ class ArenaModule {
         pokeItem.appendChild(img);
         const pokeName = document.createElement("h1");
         pokeName.textContent = poke.name;
+        const btnDelete = document.createElement("button");
+        btnDelete.classList.add("btn-delete");
+        btnDelete.setAttribute("data-id", poke._id);
+        btnDelete.textContent = "F";
+        btnDelete.onclick = () => {
+          this.deletePokemon(poke._id);
+        };
         listItem.appendChild(pokeItem);
         listItem.appendChild(pokeName);
+        listItem.appendChild(btnDelete);
         pokeUserContainer.appendChild(listItem);
       });
     }
+  };
+
+  deletePokemon = (pokemon_id) => {
+    const promise = this._pokemonService.deletePokemon(
+      pokemon_id,
+      this.$userId
+    );
+    promise.then((response) => {
+      if (response) {
+        this._pokemonService
+          .getPokemonsByUser(this.$userId)
+          .then((pokemons) => {
+            this.renderPokemonsList(pokemons);
+          });
+      }
+    });
   };
 }
 

@@ -48,6 +48,17 @@ class APIPokemonController extends APIController
         }
     }
 
+    public function deletePokemon($params = null)
+    {
+        session_start();
+        if ($this->authHelper->checkLoggedIn()) {
+            $pokemon_id = $params[':pokemon_id'];
+            $user_id = $params[':user_id'];
+            $response = $this->model->deletePokemon($pokemon_id, $user_id);
+            $this->view->response($response, 200);
+        }
+    }
+
     public function getPokemonTeam($params = null)
     {
         session_start();

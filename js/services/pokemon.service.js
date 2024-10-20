@@ -50,6 +50,24 @@ class PokemonService {
       console.error("Error fetching pokemons:", error);
     }
   };
+
+  deletePokemon = async (pokemonId, userId) => {
+    try {
+      const response = await fetch(
+        `${this.url}/deletePokemon/${pokemonId}/${userId}`,
+        {
+          method: "DELETE",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return await response.json();
+    } catch (error) {
+      alert("ERROR deleting pokemon", error);
+    }
+  };
 }
 
 export default PokemonService;

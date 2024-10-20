@@ -41,6 +41,7 @@
               <img src="https://play.pokemonshowdown.com/sprites/xyani/{$poke->name}.gif" alt="" />
             </div>
             <h1>{$poke->name}</h1>
+            <button class="btn-delete" data-id="{$poke->_id}">F</button>
           </div>
         {/foreach}
       </div>

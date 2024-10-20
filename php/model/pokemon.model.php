@@ -24,7 +24,7 @@ class PokemonModel
 
     public function getPokemonsSession($user_id)
     {
-        $query = $this->db->prepare('SELECT p.name 
+        $query = $this->db->prepare('SELECT p._id, p.name 
             FROM pokemon p
             JOIN user_pokemon up ON p._id = up.pokemon_id
             WHERE up.user_id = ?;');
@@ -43,6 +43,13 @@ class PokemonModel
     function addPokemon($user_id, $pokemon_id)
     {
         $query = $this->db->prepare('INSERT INTO user_pokemon(user_id, pokemon_id) VALUES(?, ?)');
+        $query->execute(array($user_id, $pokemon_id));
+        return $this->db->lastInsertId();
+    }
+
+    function deletePokemon($pokemon_id, $user_id)
+    {
+        $query = $this->db->prepare('DELETE FROM user_pokemon WHERE user_id = ? AND pokemon_id = ?');
         $query->execute(array($user_id, $pokemon_id));
         return $this->db->lastInsertId();
     }
