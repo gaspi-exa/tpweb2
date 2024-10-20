@@ -11,6 +11,7 @@ $r = new Router();
 //$r->addRoute('delete-comment/:ID', 'DELETE', 'APICommentController', 'deleteComment');
 
 /* POKEMON */
+$r->addRoute('getPokemon/:ID', 'GET', 'APIPokemonController', 'getPokemon');
 $r->addRoute('addPokemon', 'POST', 'APIPokemonController', 'addPokemonByUser');
 $r->addRoute('getRandomPokemon', 'GET', 'APIPokemonController', 'getRandomPokemon');
 $r->addRoute('getPokemonTeam/:ID', 'GET', 'APIPokemonController', 'getPokemonTeam');

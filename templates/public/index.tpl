@@ -18,6 +18,8 @@
                   </a>
                 </div>
 
+                {* MODAL *}
+
                 <div id="modal{$p->_id}" class="modalmask">
                   <div class="modalbox rotate">
                     <a href="#close" title="Close" class="close">X</a>

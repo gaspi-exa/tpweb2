@@ -68,4 +68,14 @@ class APIPokemonController extends APIController
             $this->view->response($response, 200);
         }
     }
+
+    public function getPokemon($params = null)
+    {
+        session_start();
+        if ($this->authHelper->checkLoggedIn()) {
+            $name = $params[':ID'];
+            $response = $this->model->getPokemonByName($name);
+            $this->view->response($response, 200);
+        }
+    }
 }

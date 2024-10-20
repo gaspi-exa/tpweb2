@@ -53,6 +53,9 @@
                 {foreach from=$allUsers item=user}
                   <td>
                     {if $row[$user]}
+                      <button class="btn-delete" data-id="{$row[$user]}">
+                        X
+                      </button>
                       <img class="img-modal" src="https://img.pokemondb.net/sprites/home/normal/{$row[$user]}.png" />
                     {/if}
                   </td>
