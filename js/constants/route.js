@@ -4,6 +4,7 @@ const Route = {
   LOGOUT: "logout",
   HOME: "home",
   ARENA: "arena",
+  CATEGORIES: "categories",
   
   ADMIN: "admin",
   PRIVATE: "private",

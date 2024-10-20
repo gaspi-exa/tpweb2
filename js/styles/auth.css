@@ -24,7 +24,7 @@ body {
 }
 
 input,
-button {
+button, .btn-back {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-style: normal;
@@ -58,4 +58,10 @@ input.error {
   width: 100%;
   text-align: center;
   padding: 2em 0;
+}
+
+.btn-back {
+  background: black;
+  margin-bottom: 2em;
+  cursor: pointer;
 }

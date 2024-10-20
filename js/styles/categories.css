@@ -197,3 +197,17 @@ section.table-section {
   font-family: "Press Start 2P", system-ui;
   font-size: 1.2rem;
 }
+
+button,
+.btn-back {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  border: none;
+}
+
+.btn-back {
+  background: black;
+  margin-bottom: 2em;
+  cursor: pointer;
+}

@@ -20,6 +20,7 @@ class ArenaModule {
     const btnPower = document.getElementById("btn-power");
     const btnPokeball = document.getElementById("send");
     const btnUpdate = document.getElementById("btn-update");
+    const btnTable = document.getElementById("btn-table");
     const btnsDelete = document.querySelectorAll(".btn-delete");
     this.$userId = Number(document.getElementById("user-id").innerHTML);
 
@@ -31,6 +32,10 @@ class ArenaModule {
     };
     btnUpdate.onclick = () => {
       this.getRandomPokemon();
+    };
+
+    btnTable.onclick = () => {
+      window.open(Route.CATEGORIES, "_self");
     };
 
     if (btnsDelete.length > 0) {

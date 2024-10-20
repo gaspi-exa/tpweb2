@@ -39,6 +39,13 @@ class PokemonController
         $this->view->renderHome($this->pokemons, $this->categories);
     }
 
+    public function showCategories()
+    {
+        $c = new CategoryController();
+        $this->categories = $c->getCategories();
+        $this->view->renderCategories($this->pokemons, $this->categories);
+    }
+
     public function getRandomPokemonID()
     {
         return $this->model->getPokemonByID(rand(1, 151));

@@ -1,4 +1,5 @@
 import PokemonService from "../../services/pokemon.service.js";
+import Route from "../../constants/route.js";
 
 class AdminModule {
   constructor() {
@@ -7,6 +8,16 @@ class AdminModule {
   }
 
   onInit = () => {
+    const btnPower = document.getElementById("btn-power");
+    btnPower.onclick = () => {
+      window.open(Route.LOGOUT, "_self");
+    };
+
+    const btnTable = document.getElementById("btn-table");
+    btnTable.onclick = () => {
+      window.open(Route.CATEGORIES, "_self");
+    };
+
     const selectsPoke = document.querySelectorAll(".select-user");
     if (selectsPoke.length > 0) {
       selectsPoke.forEach((select) => {
@@ -54,11 +65,9 @@ class AdminModule {
       );
       promise.then((response) => {
         if (response) {
-          this._pokemonService
-            .getPokemonsByUser(this.$userId)
-            .then((resp) => {
-              this.updateTable();
-            });
+          this._pokemonService.getPokemonsByUser(this.$userId).then((resp) => {
+            this.updateTable();
+          });
         }
       });
     });

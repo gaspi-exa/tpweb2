@@ -1,7 +1,12 @@
 {include file='head.tpl'}
 
 <body>
-  <main>
+  <main id="home">
+
+    <div class="btn-container">
+      <button id="btn-login">LOGIN</button>
+      <button id="btn-signup">SIGNUP</button>
+    </div>
 
     <section class="table-section">
       {foreach $categories as $c}

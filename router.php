@@ -19,10 +19,11 @@ $r->addRoute('signup', 'GET', 'AuthController', 'showSignup');
 $r->addRoute('logout', 'GET', 'AuthController', 'showLogout');
 $r->addRoute('logout', 'POST', 'AuthController', 'logout');
 
-/* ARENA */
+/* PRIVATE */
 
 $r->addRoute('arena', 'GET', 'ArenaController', 'index');
 $r->addRoute('arena', 'GET', 'PokemonController', 'getPokemonsByUser');
+$r->addRoute('categories', 'GET', 'PokemonController', 'showCategories');
 
 /* ADMIN */
 

@@ -41,7 +41,17 @@ class Form {
 
   createForm = () => {
     useStyles(this.$form, form);
+
     this.setBackground();
+    const btnBack = document.createElement("button");
+    btnBack.innerHTML = "<-";
+    btnBack.classList.add("btn-back");
+    btnBack.addEventListener("click", (e) => {
+      e.preventDefault();
+      // window.open(EModules.HOME, "_self");
+      window.history.back();
+    });
+    this.$form.appendChild(btnBack);
     if (
       this.$userStatus === EUserStatus.LOGGED_OUT ||
       this.$userStatus === EUserStatus.UNREGISTERED
