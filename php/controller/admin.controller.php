@@ -27,7 +27,7 @@ class AdminController
     {
         $this->setPokemons($this->pokemonModel->getPokemons());
         $this->setRelations($this->relationsModel->getRelations());
-        $this->view->renderAdmin($this->allUsers, $userName, $userId, $this->tableData);
+        $this->view->renderAdmin($this->allUsers, $userName, $userId, $this->tableData, $this->allPokemons);
     }
 
     public function getPokemons()

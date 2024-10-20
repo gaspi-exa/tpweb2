@@ -30,7 +30,20 @@
           <thead>
             <tr>
               {foreach from=$allUsers item=user}
-                <th>{$user}</th>
+                <th>
+                  <div>
+                    <select class="select-user" data-id="select-user-{$user}">
+                      {foreach $allPokemons as $poke}
+                        <option value="{$poke->_id}">
+                          {$poke->name}
+                        </option>
+                      {/foreach}
+                    </select>
+                  </div>
+                  <div>
+                    {$user}
+                  </div>
+                </th>
               {/foreach}
             </tr>
           </thead>
@@ -39,7 +52,9 @@
               <tr>
                 {foreach from=$allUsers item=user}
                   <td>
-                    <img class="img-modal" src="https://img.pokemondb.net/sprites/home/normal/{$row[$user]}.png" />
+                    {if $row[$user]}
+                      <img class="img-modal" src="https://img.pokemondb.net/sprites/home/normal/{$row[$user]}.png" />
+                    {/if}
                   </td>
                 {/foreach}
               </tr>

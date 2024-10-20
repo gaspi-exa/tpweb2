@@ -21,11 +21,12 @@ class ArenaView
         $this->smarty->display('templates/private/arena.tpl');
     }
 
-    public function renderAdmin($allUsers, $userName, $userId, $tableData)
+    public function renderAdmin($allUsers, $userName, $userId, $tableData, $allPokemons)
     {
         $this->smarty->assign('userName', $userName);
         $this->smarty->assign('userId', $userId);
         $this->smarty->assign('allUsers', $allUsers);
+        $this->smarty->assign('allPokemons', $allPokemons);
         $this->smarty->assign('tableData', $tableData);
         $this->smarty->assign('styleFileName', 'admin');
         $this->smarty->display('templates/private/admin/arena.tpl');

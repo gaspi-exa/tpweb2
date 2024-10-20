@@ -36,7 +36,7 @@ class Main {
           new ArenaModule(this.$root).onInit();
           break;
         case Route.ADMIN:
-          new AdminModule(this.$root).onInit();
+          new AdminModule().onInit();
           break;
       }
     }
